@@ -1,4 +1,4 @@
-package com.wagdynavas.register.Controller;
+package com.wagdynavas.register.controller;
 
 import com.wagdynavas.register.domain.Book;
 import com.wagdynavas.register.repositoty.BookRepositoty;
