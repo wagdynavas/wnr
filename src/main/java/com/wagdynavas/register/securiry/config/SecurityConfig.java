@@ -1,5 +1,6 @@
 package com.wagdynavas.register.securiry.config;
 
+import com.wagdynavas.register.domain.Reader;
 import com.wagdynavas.register.repositoty.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -29,14 +30,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(
-            AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new UserDetailsService() {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(u -> readerRepository.findByUsername(u)); /*{
                     @Override
                     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                        return readerRepository.findOne(username);
+                        UserDetails userDetails = readerRepository.findByUsername(username);
+                            return userDetails;
+
                     }
-                });
+                });*/
     }
 
 }

@@ -5,9 +5,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Reader implements UserDetails {
@@ -15,11 +18,20 @@ public class Reader implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String fullname;
     private String password;
 
-    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -36,7 +48,7 @@ public class Reader implements UserDetails {
         this.fullname = fullname;
     }
 
-    @Override
+
     public String getPassword() {
         return password;
     }
@@ -68,5 +80,14 @@ public class Reader implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Reader{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                '}';
     }
 }
